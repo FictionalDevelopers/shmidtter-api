@@ -1,11 +1,11 @@
 import { Router } from 'express';
 
+import usersRoutes from './users';
+import authRoutes from './auth';
+
 const router = Router();
 
-router.get('/', async (req, res, next) => {
-  return res.json({
-    message: 'hello there'
-  });
-});
+router.use('/users', usersRoutes);
+router.use('/auth', authRoutes);
 
 export default router;
