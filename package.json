@@ -24,7 +24,9 @@
   },
   "homepage": "https://github.com/FictionalDevelopers/teams-api#readme",
   "dependencies": {
+    "bcrypt": "^2.0.0",
     "express": "^4.16.3",
+    "jsonwebtoken": "^8.2.1",
     "mysql2": "^1.5.3",
     "sequelize": "^4.37.6"
   },
