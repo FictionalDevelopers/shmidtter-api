@@ -1,1 +1,1 @@
-# shmidtter-api
+# Teams Api
