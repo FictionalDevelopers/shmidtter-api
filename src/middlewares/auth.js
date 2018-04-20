@@ -19,7 +19,7 @@ export function withToken(req, res, next) {
   }
 }
 
-export function getTokenData(req, res, next) {
+export function verifyToken(req, res, next) {
   try {
     const token = req.token;
 
