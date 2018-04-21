@@ -1,9 +1,5 @@
 import Space from '../database/models/space';
 
-export async function getSpaces() {
-  return await Space.findAll();
-}
-
 /**
  * @param {number} creatorId
  * @param {string[]} includeAttributes
@@ -15,6 +11,13 @@ export async function getSpacesByCreator(creatorId, includeAttributes = []) {
     },
     attributes: includeAttributes
   });
+}
+
+/**
+ * @param {number} spaceId
+ */
+export async function getSpaceById(spaceId) {
+  return await Space.findById(spaceId);
 }
 
 /**
