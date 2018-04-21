@@ -14,6 +14,4 @@ const fields = {
   }
 };
 
-const User = sequelize.define('User', fields);
-
-export default User;
+export default sequelize.define('User', fields);

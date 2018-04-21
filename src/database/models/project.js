@@ -2,9 +2,6 @@ import Sequelize from 'sequelize';
 
 import sequelize from './index';
 
-import Project from './project';
-import ProjectSpace from './project-space';
-
 const fields = {
   creatorId: {
     type: Sequelize.INTEGER,
@@ -21,8 +18,4 @@ const fields = {
   }
 };
 
-const Space = sequelize.define('Space', fields);
-
-Space.belongsToMany(Project, { through: ProjectSpace, foreignKey: 'spaceId', otherKey: 'projectId' });
-
-export default Space;
+export default sequelize.define('Project', fields);
