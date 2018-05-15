@@ -2,14 +2,14 @@ import Space from '../database/models/space';
 
 /**
  * @param {number} creatorId
- * @param {string[]} includeAttributes
+ * @param {string[]} attributes
  */
-export async function getSpacesByCreator(creatorId, includeAttributes = []) {
+export async function getSpacesByCreator(creatorId, attributes = []) {
   return await Space.findAll({
     where: {
-      creatorId
+      creatorId,
     },
-    attributes: includeAttributes
+    ...(attributes.length && { attributes }),
   });
 }
 
@@ -27,6 +27,6 @@ export async function getSpaceById(spaceId) {
 export async function createSpace(creatorId, spaceName = null) {
   return await Space.create({
     creatorId,
-    name: spaceName
+    name: spaceName,
   });
 }
