@@ -1,9 +1,9 @@
 import * as userService from '../services/user-service';
 import * as authService from '../services/auth-service';
 
-export async function registerUser(req, res, next) {
+export async function registerUser(req, res) {
   try {
-    const { email, password } = req.body;
+    const { email, password, name } = req.body;
 
     if (!email || !password) {
       return res.status(400).json({
@@ -11,7 +11,7 @@ export async function registerUser(req, res, next) {
       });
     }
 
-    const user = await userService.createUser(email, password);
+    const user = await userService.createUser({ email, password, name });
 
     if (!user) {
       return res.status(401).json({
@@ -33,7 +33,7 @@ export async function registerUser(req, res, next) {
   }
 }
 
-export async function loginUser(req, res, next) {
+export async function loginUser(req, res) {
   try {
     const { email, password } = req.body;
 
@@ -43,7 +43,7 @@ export async function loginUser(req, res, next) {
       });
     }
 
-    const user = await userService.getUserByEmail(email);
+    const user = await userService.getUserByEmail(email, ['id', 'password']);
 
     if (!user) {
       return res.status(401).json({
@@ -73,7 +73,7 @@ export async function loginUser(req, res, next) {
   }
 }
 
-export async function refreshTokens(req, res, next) {
+export async function refreshTokens(req, res) {
   try {
     const tokenData = req.tokenData;
 

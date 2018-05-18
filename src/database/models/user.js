@@ -11,7 +11,10 @@ const fields = {
   password: {
     type: Sequelize.STRING,
     allowNull: false
-  }
+  },
+  name: {
+    type: Sequelize.STRING,
+  },
 };
 
 export default sequelize.define('User', fields);

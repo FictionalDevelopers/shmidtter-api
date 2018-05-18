@@ -1,12 +1,12 @@
 import User from '../database/models/user';
 
-import { hashString, compare } from '../utils/hash';
+import { compare, hashString } from '../utils/hash';
 
 export async function getUsers() {
   return await User.findAll();
 }
 
-export async function createUser(email, password) {
+export async function createUser({ email, password, name }) {
   const hashedPassword = await hashString(password);
 
   const [user, wasCreated] = await User.findOrCreate({
@@ -14,17 +14,20 @@ export async function createUser(email, password) {
       email
     },
     defaults: {
-      password: hashedPassword
+      password: hashedPassword,
+      name,
     }
   });
   return wasCreated ? user : null;
 }
 
-export async function getUserByEmail(email) {
+export async function getUserByEmail(email, attributes = ['id']) {
+
   return await User.findOne({
     where: {
-      email
-    }
+      email,
+    },
+    ...(attributes.length && ({ attributes })),
   });
 }
 
